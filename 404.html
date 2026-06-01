@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>404 — Page Not Found | Ciudadela Digital</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════ HEADER / NAV ═══════════════════════ -->
+  <header class="site-header is-scrolled">
+    <nav class="nav" aria-label="Main navigation">
+
+      <a href="index.html" class="nav__logo" aria-label="Ciudadela Digital — Home">
+        <img
+          src="assets/img/logo.png"
+          alt="Ciudadela Digital logo"
+          class="nav__logo-img"
+          onerror="this.style.display='none'"
+        />
+        <span class="nav__logo-text">Ciudadela<em>Digital</em></span>
+      </a>
+
+      <button
+        class="nav__toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+
+      <ul class="nav__menu" id="nav-menu" role="list">
+        <li><a href="index.html#about"   class="nav__link">About</a></li>
+        <li><a href="index.html#games"   class="nav__link">Games</a></li>
+        <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main>
+    <div class="error-page" role="main" aria-labelledby="error-heading">
+      <div class="error-page__glow" aria-hidden="true"></div>
+
+      <div class="error-page__content">
+        <p class="error-code" aria-hidden="true">404</p>
+        <p class="error-label">Error 404 — Page Not Found</p>
+        <h1 id="error-heading" class="error-title">You've entered the void.</h1>
+        <p class="error-desc">
+          The page you were looking for doesn't exist, was moved, or maybe got
+          deleted by a rogue AI. Happens to the best of us.
+        </p>
+        <div class="error-actions">
+          <a href="index.html"        class="btn btn--primary">Go Back Home</a>
+          <a href="index.html#games"  class="btn btn--ghost">See Our Games</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="footer-year"></span> Ciudadela Digital. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
