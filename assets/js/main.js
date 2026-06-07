@@ -1,16 +1,15 @@
-/* ═══════════════════════════════════════════════════════════════
-   Ciudadela Digital — main.js
-   Navbar · Mobile menu · Smooth scroll · Active link ·
-   Hero parallax · Scroll reveal · Section snap
-═══════════════════════════════════════════════════════════════ */
-
 (function () {
   'use strict';
 
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
   // ── Single source of truth for navbar height ─────────────────
   const navHeight = parseInt(
     getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10
   ) || 72;
+  let isSnapping = false;
 
   // ── Footer year ───────────────────────────────────────────────
   const yearEl = document.getElementById('footer-year');
@@ -32,6 +31,8 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    window.addEventListener('load', onScroll);
   }
 
   // ── Mobile nav toggle ─────────────────────────────────────────
@@ -93,6 +94,7 @@
 
   if (sections.length && navLinks.length) {
     function setActiveLink() {
+      if (isSnapping) return;
       let current = '';
       sections.forEach(s => {
         if (window.scrollY >= s.offsetTop - navHeight - 48) {
@@ -140,9 +142,6 @@
 
   if (revealEls.length) {
     if ('IntersectionObserver' in window) {
-      // Tuning knobs for reveal timing:
-      // - Higher threshold => later entry and earlier exit
-      // - More negative top/bottom margins => smaller active viewport zone
       const REVEAL_THRESHOLD = 0.24;
       const REVEAL_ROOT_MARGIN = '-10% 0px -14% 0px';
 
@@ -172,8 +171,6 @@
     const SNAP_DURATION = 850;
 
     function easeOutQuint(t) { return 1 - Math.pow(1 - t, 5); }
-
-    let isSnapping = false;
 
     function snapTo(targetY) {
       isSnapping = true;
@@ -239,7 +236,7 @@
 
     }, { passive: false });
 
-    // Touch swipe snap (touchpad)
+    // Touch swipe snap
     let touchStartY = 0;
     window.addEventListener('touchstart', e => {
       touchStartY = e.touches[0].clientY;
