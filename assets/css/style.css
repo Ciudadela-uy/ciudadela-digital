@@ -22,6 +22,7 @@
 
   --font-display: 'DM Sans', sans-serif;
   --font-body:    'DM Sans', sans-serif;
+  --font-mono:     ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
 
   --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth:    cubic-bezier(0.4, 0, 0.2, 1);
@@ -47,7 +48,7 @@
 
 /* ── Reset ──────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
 img, svg { display: block; max-width: 100%; }
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; }
@@ -64,7 +65,7 @@ body {
   /* Tiled background — drop your PNG at assets/img/bg-pattern.png */
   background-image: url('../img/bg-pattern.png');
   background-repeat: repeat;
-  background-size: auto; /* keeps the PNG at its natural pixel size */
+  background-size: 50px; /* keeps the PNG at its natural pixel size */
 
   overflow-x: hidden;
 }
@@ -391,19 +392,6 @@ body {
   scroll-margin-top: var(--nav-height);
 }
 
-/* Keep footer visible together with the last snapped section on desktop */
-@media (min-width: 901px) {
-  .contact.section {
-    min-height: max(72dvh, calc(90dvh - var(--footer-height)));
-  }
-
-  .contact.section::before {
-    top: calc(var(--sp-16) * -1);
-    z-index: 1;
-    pointer-events: none;
-  }
-}
-
 .section::before {
   content: '';
   position: absolute;
@@ -569,10 +557,9 @@ body {
 ═══════════════════════════════════════════════════════════════ */
 .games { background: transparent; }
 
-.games__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: var(--sp-6);
+.game-card {
+  max-width: 480px;
+  margin-inline: auto;
 }
 
 .game-card {
@@ -803,6 +790,12 @@ body {
 /* ══════════════════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════════════════ */
+@media (min-width: 901px) {
+  .contact.section {
+    min-height: calc(100dvh - 80px);
+  }
+}
+
 .site-footer {
   padding-block: var(--sp-8);
   text-align: center;
@@ -974,33 +967,45 @@ body {
     transition: transform 0.4s var(--ease-out-expo);
     z-index: 150;
   }
-  .nav__menu.is-open {
-    transform: translateX(0);
-  }
+  .nav__menu.is-open { transform: translateX(0); }
   .nav__link {
     font-size: 1.1rem;
     letter-spacing: 0.06em;
     color: var(--text);
   }
 
-  .hero__content { padding-block: var(--sp-16) var(--sp-20); }
-  .section { padding-block: var(--sp-20); }
-  .section__header { margin-bottom: var(--sp-10); }
-
-  .about__text.reveal--left {
-    transform: translateX(-46px);
+  .section {
+    min-height: unset;
+    padding-block: var(--sp-16) var(--sp-20);
   }
+  .hero { min-height: 100dvh; }
+
+  .hero__content { padding-block: var(--sp-16) var(--sp-20); }
+  .section__header {
+    margin-bottom: var(--sp-10);
+    text-align: center;
+  }
+  .section__label { text-align: center; }
+
+  .about__text.reveal--left,
   .team.reveal--right {
-    transform: translateX(46px);
+    transform: translateY(38px);
   }
   .about__text.reveal,
   .team.reveal {
     transition-duration: 1.0s;
   }
 
+  .about__text { text-align: center; }
+  .about__text p { text-align: left; }
+
   .games__grid { grid-template-columns: 1fr; }
-  .hero__cta { flex-direction: column; }
-  .hero__cta .btn { text-align: center; justify-content: center; }
+
+  .hero__cta { flex-direction: column; align-items: center; }
+  .hero__cta .btn { text-align: center; justify-content: center; width: 100%; max-width: 280px; }
+
+  .hero__content { text-align: center; }
+  .hero__tagline { margin-inline: auto; }
 
   .social { gap: var(--sp-2); }
   .social__link span { display: none; }

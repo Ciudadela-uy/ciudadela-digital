@@ -124,6 +124,7 @@
   if (parallaxEl) {
     let ticking = false;
     window.addEventListener('scroll', () => {
+      if (isSnapping) return;
       if (!ticking) {
         requestAnimationFrame(() => {
           parallaxEl.style.transform = `translateY(${window.scrollY * 0.35}px)`;
@@ -163,25 +164,30 @@
   }
 
   // ── Section Snap — desktop only ───────────────────────────────
-  // One wheel tick = jump to the next complete section. No delay.
   if (sections.length && window.matchMedia('(min-width: 901px)').matches) {
     const sectionArr = Array.from(sections);
     let locked = false;
     let lockTimer;
-    const SNAP_DURATION = 850; // ms — adjust to taste
+    let lastWheelTime = 0;
+    const SNAP_DURATION = 850;
 
-    // easeOutQuint: instant start, smooth long deceleration
     function easeOutQuint(t) { return 1 - Math.pow(1 - t, 5); }
 
+    let isSnapping = false;
+
     function snapTo(targetY) {
+      isSnapping = true;
       const startY = window.scrollY;
       const dist   = targetY - startY;
       const start  = performance.now();
       function step(now) {
-        const t    = Math.min((now - start) / SNAP_DURATION, 1);
+        const t = Math.min((now - start) / SNAP_DURATION, 1);
         window.scrollTo(0, startY + dist * easeOutQuint(t));
         if (t < 1) requestAnimationFrame(step);
-        else window.scrollTo(0, targetY);
+        else {
+          window.scrollTo(0, targetY);
+          isSnapping = false;
+        }
       }
       requestAnimationFrame(step);
     }
@@ -197,33 +203,43 @@
 
     function targetYFor(index) {
       const maxY = document.documentElement.scrollHeight - window.innerHeight;
-      return Math.min(maxY, Math.max(0, sectionArr[index].offsetTop - navHeight));
+      const baseY = Math.max(0, sectionArr[index].offsetTop - navHeight);
+      
+      if (index === sectionArr.length - 1) {
+        return maxY;
+      }
+      
+      return Math.min(maxY, baseY);
     }
 
     window.addEventListener('wheel', function (e) {
       if (Math.abs(e.deltaY) < 3) return;
+
       if (locked) {
         e.preventDefault();
         return;
       }
 
-      const dir  = e.deltaY > 0 ? 1 : -1;
-      const current = nearestIndex();
-      const next = current + dir;
+      const now = performance.now();
+      if (now - lastWheelTime < 100) return;
 
-      // At boundaries, allow native scroll instead of trapping.
+      const dir     = e.deltaY > 0 ? 1 : -1;
+      const current = nearestIndex();
+      const next    = current + dir;
+
       if (next < 0 || next >= sectionArr.length) return;
 
       e.preventDefault();
-
+      lastWheelTime = now;
       locked = true;
       snapTo(targetYFor(next));
 
       clearTimeout(lockTimer);
       lockTimer = setTimeout(() => { locked = false; }, SNAP_DURATION + 50);
+
     }, { passive: false });
 
-    // Touch swipe snap (laptops with touchpad)
+    // Touch swipe snap (touchpad)
     let touchStartY = 0;
     window.addEventListener('touchstart', e => {
       touchStartY = e.touches[0].clientY;
@@ -234,9 +250,9 @@
       const delta = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(delta) < 30) return;
 
-      const dir  = delta > 0 ? 1 : -1;
+      const dir     = delta > 0 ? 1 : -1;
       const current = nearestIndex();
-      const next = current + dir;
+      const next    = current + dir;
       if (next < 0 || next >= sectionArr.length) return;
 
       locked = true;
