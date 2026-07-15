@@ -256,9 +256,10 @@
         }
 
         const rect = el.getBoundingClientRect();
-        const start = window.innerHeight * 0.92;
-        const end = window.innerHeight * 0.2;
-        const progress = clamp((start - rect.top) / (start - end), 0, 1);
+        const start = window.innerHeight * 0.76;
+        const end = window.innerHeight * 0.38;
+        const rawProgress = clamp((start - rect.top) / (start - end), 0, 1);
+        const progress = 1 - Math.pow(1 - rawProgress, 2.1);
 
         el.style.setProperty('--reveal-progress', progress.toFixed(3));
         el.classList.toggle('is-visible', progress >= 0.995);

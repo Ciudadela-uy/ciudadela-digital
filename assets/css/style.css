@@ -763,24 +763,26 @@ body {
 .reveal {
   --reveal-progress: 0;
   --reveal-x: 0px;
-  --reveal-y: 38px;
-  --reveal-scale-start: 1;
-  opacity: calc(0.16 + (var(--reveal-progress) * 0.84));
+  --reveal-y: 72px;
+  --reveal-scale-start: 0.9;
+  opacity: calc(0.04 + (var(--reveal-progress) * 0.96));
   transform: translate3d(
       calc(var(--reveal-x) * (1 - var(--reveal-progress))),
       calc(var(--reveal-y) * (1 - var(--reveal-progress))),
       0
     )
     scale(calc(var(--reveal-scale-start) + ((1 - var(--reveal-scale-start)) * var(--reveal-progress))));
-  transition: opacity 0.14s linear, transform 0.14s linear;
-  will-change: opacity, transform;
+  filter: blur(calc((1 - var(--reveal-progress)) * 6px));
+  transition: opacity 0.12s linear, transform 0.12s linear, filter 0.12s linear;
+  will-change: opacity, transform, filter;
 }
-.reveal--left { --reveal-x: -72px; --reveal-y: 0px; }
-.reveal--right { --reveal-x: 72px; --reveal-y: 0px; }
+.reveal--left { --reveal-x: -110px; --reveal-y: 0px; }
+.reveal--right { --reveal-x: 110px; --reveal-y: 0px; }
 .reveal--scale { --reveal-y: 28px; --reveal-scale-start: 0.88; }
 
 .reveal.is-visible {
   opacity: 1;
+  filter: blur(0);
 }
 
 .reveal[data-delay='1'] { transition-delay: 0.12s; }
@@ -874,12 +876,12 @@ body {
   }
 
   .about__text.reveal--left {
-    --reveal-x: -78px;
+    --reveal-x: -92px;
     --reveal-scale-start: 0.985;
   }
 
   .team.reveal--right {
-    --reveal-x: 78px;
+    --reveal-x: 92px;
     --reveal-scale-start: 0.985;
   }
 
@@ -938,7 +940,7 @@ body {
   .about__text.reveal--left,
   .team.reveal--right {
     --reveal-x: 0px;
-    --reveal-y: 38px;
+    --reveal-y: 54px;
   }
 
   .reveal {
