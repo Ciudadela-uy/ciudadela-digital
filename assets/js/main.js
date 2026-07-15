@@ -37,7 +37,7 @@
 
   // ── Mobile nav toggle ─────────────────────────────────────────
   const toggle = document.querySelector('.nav__toggle');
-  const menu   = document.getElementById('nav-menu');
+  const menu = document.getElementById('nav-menu');
 
   if (toggle && menu) {
     toggle.addEventListener('click', function () {
@@ -46,7 +46,7 @@
       const bars = toggle.querySelectorAll('.nav__toggle-bar');
       if (isOpen) {
         bars[0].style.transform = 'translateY(7px) rotate(45deg)';
-        bars[1].style.opacity   = '0';
+        bars[1].style.opacity = '0';
         bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
       } else {
         bars.forEach(b => { b.style.transform = ''; b.style.opacity = ''; });
@@ -175,8 +175,8 @@
     function snapTo(targetY) {
       isSnapping = true;
       const startY = window.scrollY;
-      const dist   = targetY - startY;
-      const start  = performance.now();
+      const dist = targetY - startY;
+      const start = performance.now();
       function step(now) {
         const t = Math.min((now - start) / SNAP_DURATION, 1);
         window.scrollTo(0, startY + dist * easeOutQuint(t));
@@ -201,11 +201,11 @@
     function targetYFor(index) {
       const maxY = document.documentElement.scrollHeight - window.innerHeight;
       const baseY = Math.max(0, sectionArr[index].offsetTop - navHeight);
-      
+
       if (index === sectionArr.length - 1) {
         return maxY;
       }
-      
+
       return Math.min(maxY, baseY);
     }
 
@@ -220,9 +220,9 @@
       const now = performance.now();
       if (now - lastWheelTime < 100) return;
 
-      const dir     = e.deltaY > 0 ? 1 : -1;
+      const dir = e.deltaY > 0 ? 1 : -1;
       const current = nearestIndex();
-      const next    = current + dir;
+      const next = current + dir;
 
       if (next < 0 || next >= sectionArr.length) return;
 
@@ -247,9 +247,9 @@
       const delta = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(delta) < 30) return;
 
-      const dir     = delta > 0 ? 1 : -1;
+      const dir = delta > 0 ? 1 : -1;
       const current = nearestIndex();
-      const next    = current + dir;
+      const next = current + dir;
       if (next < 0 || next >= sectionArr.length) return;
 
       locked = true;
