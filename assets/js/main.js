@@ -103,7 +103,6 @@
           el.textContent = translations[normalizedLang][key];
         }
       } else if (translations.en && translations.en[key]) {
-        // Fallback to English if a key is missing in the selected language.
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
           el.placeholder = translations.en[key];
         } else {
@@ -121,6 +120,22 @@
   document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('lang') || 'en';
     setLanguage(savedLang);
+
+    document.querySelectorAll('img').forEach(img => {
+      img.setAttribute('draggable', 'false');
+    });
+
+    document.addEventListener('contextmenu', (event) => {
+      if (event.target instanceof Element && event.target.closest('img')) {
+        event.preventDefault();
+      }
+    });
+
+    document.addEventListener('dragstart', (event) => {
+      if (event.target instanceof Element && event.target.closest('img')) {
+        event.preventDefault();
+      }
+    });
 
     const toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) {

@@ -1,4 +1,3 @@
-/* ── Variables ──────────────────────────────────────────────── */
 :root {
   --blue-deep: #2a52a3;
   --blue-light: #5cb8ff;
@@ -46,7 +45,6 @@
   --radius-lg: 20px;
 }
 
-/* ── Reset ──────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
 img, svg { display: block; max-width: 100%; }
@@ -54,7 +52,6 @@ ul { list-style: none; }
 a { text-decoration: none; color: inherit; }
 button { background: none; border: none; cursor: pointer; }
 
-/* ── Body / Background Pattern ─────────────────────────────── */
 body {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -69,7 +66,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Container ──────────────────────────────────────────────── */
 .container {
   width: 100%;
   max-width: 1160px;
@@ -744,7 +740,6 @@ body {
   color: var(--text-muted);
 }
 
-/* ── Base keyframes (hero entrance + scroll-driven reveals) ─── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: translateY(0); }
@@ -754,9 +749,6 @@ body {
   to { opacity: 1; }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   SCROLL REVEAL — progressive with scroll position
-═══════════════════════════════════════════════════════════════ */
 .reveal {
   --reveal-progress: 0;
   --reveal-x: 0px;
@@ -980,7 +972,6 @@ body {
   background: linear-gradient(135deg, rgba(12, 15, 24, 0.92) 0%, rgba(15, 19, 32, 0.85) 100%);
 }
 
-/* Language Toggle */
 .nav__lang-btn {
   font-family: var(--font-mono);
   font-size: 0.75rem;
