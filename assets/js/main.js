@@ -89,24 +89,32 @@
   };
 
   function setLanguage(lang) {
-    localStorage.setItem('lang', lang);
-    document.documentElement.lang = lang;
+    const normalizedLang = (lang === 'es' || lang === 'en') ? lang : 'en';
+    localStorage.setItem('lang', normalizedLang);
+    document.documentElement.lang = normalizedLang;
     
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
-      if (translations[lang] && translations[lang][key]) {
+      if (translations[normalizedLang] && translations[normalizedLang][key]) {
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.placeholder = translations[lang][key];
+          el.placeholder = translations[normalizedLang][key];
         } else {
-          el.textContent = translations[lang][key];
+          el.textContent = translations[normalizedLang][key];
+        }
+      } else if (translations.en && translations.en[key]) {
+        // Fallback to English if a key is missing in the selected language.
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = translations.en[key];
+        } else {
+          el.textContent = translations.en[key];
         }
       }
     });
 
     const toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) {
-      toggleBtn.textContent = lang === 'en' ? 'ES' : 'EN';
+      toggleBtn.textContent = normalizedLang === 'en' ? 'ES' : 'EN';
     }
   }
 
@@ -124,15 +132,9 @@
     }
   });
 
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  window.scrollTo(0, 0);
-
   const navHeight = parseInt(
     getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10
   ) || 72;
-  let isSnapping = false;
 
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -208,7 +210,6 @@
   const navLinks = document.querySelectorAll('.nav__link');
   if (sections.length && navLinks.length) {
     function setActiveLink() {
-      if (isSnapping) return;
       let current = '';
       sections.forEach(s => {
         if (window.scrollY >= s.offsetTop - navHeight - 48) {
@@ -234,133 +235,57 @@
   }
 
   const parallaxEl = document.querySelector('.hero__parallax');
-  if (parallaxEl) {
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (isSnapping) return;
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          parallaxEl.style.transform = `translateY(${window.scrollY * 0.35}px)`;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
   const revealEls = Array.from(document.querySelectorAll('.reveal'));
   if (revealEls.length) {
-    if ('IntersectionObserver' in window) {
-      const REVEAL_THRESHOLD = 0.24;
-      const REVEAL_ROOT_MARGIN = '-10% 0px -14% 0px';
-      const io = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            entry.target.classList.toggle(
-              'is-visible',
-              entry.intersectionRatio >= REVEAL_THRESHOLD
-            );
-          });
-        },
-        { threshold: [0, REVEAL_THRESHOLD, 1], rootMargin: REVEAL_ROOT_MARGIN }
-      );
-      revealEls.forEach(el => io.observe(el));
-    } else {
-      revealEls.forEach(el => el.classList.add('is-visible'));
-    }
-  }
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let ticking = false;
 
-  if (sections.length && window.matchMedia('(min-width: 901px)').matches) {
-    const sectionArr = Array.from(sections);
-    let locked = false;
-    let lockTimer;
-    let lastWheelTime = 0;
-    const SNAP_DURATION = 850;
-    function easeOutQuint(t) { return 1 - Math.pow(1 - t, 5); }
+    function updateScrollMotion() {
+      const scrollY = window.scrollY;
 
-    function snapTo(targetY) {
-      isSnapping = true;
-      const startY = window.scrollY;
-      const dist = targetY - startY;
-      const start = performance.now();
-      function step(now) {
-        const t = Math.min((now - start) / SNAP_DURATION, 1);
-        window.scrollTo(0, startY + dist * easeOutQuint(t));
-        if (t < 1) requestAnimationFrame(step);
-        else {
-          window.scrollTo(0, targetY);
-          isSnapping = false;
+      if (parallaxEl && !prefersReducedMotion.matches) {
+        parallaxEl.style.setProperty('--hero-parallax-offset', `${scrollY * 0.22}px`);
+      }
+
+      revealEls.forEach(el => {
+        if (prefersReducedMotion.matches) {
+          el.style.setProperty('--reveal-progress', '1');
+          el.classList.add('is-visible');
+          return;
         }
-      }
-      requestAnimationFrame(step);
+
+        const rect = el.getBoundingClientRect();
+        const start = window.innerHeight * 0.92;
+        const end = window.innerHeight * 0.2;
+        const progress = clamp((start - rect.top) / (start - end), 0, 1);
+
+        el.style.setProperty('--reveal-progress', progress.toFixed(3));
+        el.classList.toggle('is-visible', progress >= 0.995);
+      });
+
+      ticking = false;
     }
 
-    function nearestIndex() {
-      const mid = window.scrollY + window.innerHeight * 0.5;
-      let idx = 0;
-      for (let i = 0; i < sectionArr.length; i++) {
-        if (sectionArr[i].offsetTop - navHeight <= mid) idx = i;
-      }
-      return idx;
+    function requestScrollMotionUpdate() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateScrollMotion);
     }
 
-    function targetYFor(index) {
-      const maxY = document.documentElement.scrollHeight - window.innerHeight;
-      const baseY = Math.max(0, sectionArr[index].offsetTop - navHeight);
-
-      if (index === sectionArr.length - 1) {
-        return maxY;
-      }
-
-      return Math.min(maxY, baseY);
+    window.addEventListener('scroll', requestScrollMotionUpdate, { passive: true });
+    window.addEventListener('resize', requestScrollMotionUpdate, { passive: true });
+    if (typeof prefersReducedMotion.addEventListener === 'function') {
+      prefersReducedMotion.addEventListener('change', requestScrollMotionUpdate);
     }
+    requestScrollMotionUpdate();
+  } else if (parallaxEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const updateParallax = () => {
+      parallaxEl.style.setProperty('--hero-parallax-offset', `${window.scrollY * 0.22}px`);
+    };
 
-    window.addEventListener('wheel', function (e) {
-      if (Math.abs(e.deltaY) < 3) return;
-
-      if (locked) {
-        e.preventDefault();
-        return;
-      }
-
-      const now = performance.now();
-      if (now - lastWheelTime < 100) return;
-
-      const dir = e.deltaY > 0 ? 1 : -1;
-      const current = nearestIndex();
-      const next = current + dir;
-
-      if (next < 0 || next >= sectionArr.length) return;
-
-      e.preventDefault();
-      lastWheelTime = now;
-      locked = true;
-      snapTo(targetYFor(next));
-
-      clearTimeout(lockTimer);
-      lockTimer = setTimeout(() => { locked = false; }, SNAP_DURATION + 50);
-    }, { passive: false });
-
-    let touchStartY = 0;
-    window.addEventListener('touchstart', e => {
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    window.addEventListener('touchend', e => {
-      if (locked) return;
-      const delta = touchStartY - e.changedTouches[0].clientY;
-      if (Math.abs(delta) < 30) return;
-
-      const dir = delta > 0 ? 1 : -1;
-      const current = nearestIndex();
-      const next = current + dir;
-      if (next < 0 || next >= sectionArr.length) return;
-
-      locked = true;
-      snapTo(targetYFor(next));
-
-      clearTimeout(lockTimer);
-      lockTimer = setTimeout(() => { locked = false; }, SNAP_DURATION + 50);
-    }, { passive: true });
+    window.addEventListener('scroll', updateParallax, { passive: true });
+    window.addEventListener('resize', updateParallax, { passive: true });
+    updateParallax();
   }
 })();
