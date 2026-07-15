@@ -218,21 +218,16 @@ body {
   transform: translateX(-50%);
   background: radial-gradient(
     circle,
-    rgba(41, 82, 162, 0.22) 0%,
-    rgba(41, 82, 162, 0.14) 30%,
-    rgba(41, 82, 162, 0.04) 52%,
-    transparent 72%
+    rgba(64, 130, 225, 0.22) 0%,
+    rgba(64, 130, 225, 0.14) 36%,
+    rgba(64, 130, 225, 0.05) 58%,
+    transparent 78%
   );
   filter: blur(18px);
 }
 
 .hero::after {
-  width: min(28vw, 320px);
-  height: min(28vw, 320px);
-  right: 8%;
-  top: 16%;
-  background: radial-gradient(circle, rgba(92, 184, 254, 0.18) 0%, transparent 72%);
-  filter: blur(8px);
+  display: none;
 }
 
 .hero__parallax {
@@ -246,15 +241,17 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(41, 82, 162, 0.22) 0%, rgba(41, 82, 162, 0.1) 24%, transparent 64%),
-    radial-gradient(circle at 76% 18%, rgba(92, 184, 254, 0.14) 0%, transparent 42%),
-    radial-gradient(circle at 18% 74%, rgba(92, 184, 254, 0.1) 0%, transparent 38%);
+  background: radial-gradient(
+    ellipse 64% 58% at 50% 42%,
+    rgba(64, 130, 225, 0.24) 0%,
+    rgba(64, 130, 225, 0.11) 42%,
+    transparent 82%
+  );
   transform: translate3d(0, var(--hero-parallax-offset, 0px), 0) scale(1.02);
   transform-origin: center;
   backface-visibility: hidden;
   contain: paint;
-  opacity: 0.95;
+  opacity: 0.88;
 }
 
 .hero__content {
