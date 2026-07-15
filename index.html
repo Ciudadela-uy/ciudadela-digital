@@ -1,69 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ciudadela Digital — an indie game development studio crafting unique experiences from Montevideo, Uruguay." />
-  <title>Ciudadela Digital</title>
-  <link rel="icon" type="image/png" href="assets/img/isotype.png" />
-  <link rel="apple-touch-icon" href="assets/img/isotype.png" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page.title">Ciudadela Digital</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-  <!-- ═══════════════════════ HEADER / NAV ═══════════════════════ -->
   <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-
-      <!-- Logo: shows image if found, text fallback otherwise -->
-      <a href="#hero" class="nav__logo" aria-label="Ciudadela Digital — Home">
-        <img
-          src="assets/img/isotype.png"
-          alt="Ciudadela Digital logo"
-          class="nav__logo-img"
-          width="32"
-          height="32"
-        />
+    <nav class="nav">
+      <a href="#" class="nav__logo">
+        <img src="assets/img/isotype.png" alt="Ciudadela Digital" class="nav__logo-img">
         <span class="nav__logo-text">Ciudadela<em>Digital</em></span>
       </a>
-
-      <button
-        class="nav__toggle"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-        aria-controls="nav-menu"
-      >
+      <div class="nav__menu" id="nav-menu">
+        <a href="#about" class="nav__link" data-i18n="nav.about">About</a>
+        <a href="#games" class="nav__link" data-i18n="nav.games">Games</a>
+        <a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a>
+        <button id="lang-toggle" class="nav__link" style="cursor: pointer; background: none; border: none; font: inherit;">ES</button>
+      </div>
+      <button class="nav__toggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="nav__toggle-bar"></span>
         <span class="nav__toggle-bar"></span>
         <span class="nav__toggle-bar"></span>
       </button>
-
-      <ul class="nav__menu" id="nav-menu" role="list">
-        <li><a href="#about"   class="nav__link">About</a></li>
-        <li><a href="#games"   class="nav__link">Games</a></li>
-        <li><a href="#contact" class="nav__link">Contact</a></li>
-      </ul>
-
     </nav>
   </header>
 
   <main>
-
-    <!-- ═══════════════════════ HERO ═══════════════════════════ -->
-    <section id="hero" class="hero" aria-labelledby="hero-heading">
-
-      <!-- Parallax background layer -->
-      <div class="hero__parallax" aria-hidden="true"></div>
-
-      <!-- Decorative rings -->
-      <div class="hero__lines" aria-hidden="true"></div>
-
+    <section id="hero" class="hero">
+      <div class="hero__parallax"></div>
       <div class="container hero__content">
         <p class="hero__eyebrow">
           <span class="hero__eyebrow-dot" aria-hidden="true"></span>
@@ -74,246 +40,136 @@
           Ciudadela
           <span class="gradient-text">Digital</span>
         </h1>
-
-        <p class="hero__tagline">
-          We build worlds worth getting lost in.
-        </p>
-
+        <p class="hero__tagline" data-i18n="hero.tagline">We build worlds worth getting lost in.</p>
         <div class="hero__cta">
-          <a href="#games"  class="btn btn--primary">See Our Games</a>
-          <a href="#about"  class="btn btn--ghost">Meet the Team</a>
+          <a href="#games" class="btn btn--primary" data-i18n="hero.cta.games">See Our Games</a>
+          <a href="#about" class="btn btn--ghost" data-i18n="hero.cta.team">Meet the Team</a>
         </div>
       </div>
-
-      <!-- Scroll indicator -->
-      <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll">
         <div class="hero__scroll-line"></div>
-        <span class="hero__scroll-label">scroll</span>
+        <span class="hero__scroll-label" data-i18n="hero.scroll">scroll</span>
       </div>
-
     </section>
 
-    <!-- ═══════════════════════ ABOUT ═══════════════════════════ -->
-    <section id="about" class="about section" aria-labelledby="about-heading">
+    <section id="about" class="section about">
       <div class="container">
-
         <div class="about__grid">
-
-          <div class="about__left">
-            <header class="section__header reveal">
-              <span class="section__label">Who we are</span>
-              <h2 id="about-heading" class="section__title">About Us</h2>
-              <p class="section__subtitle">Five developers. One mission.</p>
+          <div class="about__left reveal reveal--left">
+            <header class="section__header">
+              <span class="section__label" data-i18n="about.label">Who we are</span>
+              <h2 class="section__title" data-i18n="about.title">About Us</h2>
+              <p class="section__subtitle" data-i18n="about.subtitle">Five developers. One mission.</p>
             </header>
-
-            <div class="about__text reveal reveal--left">
-            <p>
-              Ciudadela Digital is a five-person independent studio passionate about creating
-              memorable, handcrafted games. Founded in Montevideo, we believe that small teams
-              can build experiences that rival those of much larger studios — as long as every
-              pixel, line of code, and sound effect is made with intention.
-            </p>
-            <p>
-              We draw inspiration from retro aesthetics, sci-fi narratives, and the richness
-              of Latin American culture. Our games are designed to challenge, surprise, and
-              above all, stay with you long after you put the controller down.
-            </p>
+            <div class="about__text">
+              <p data-i18n="about.p1">Ciudadela Digital is a five-person independent studio passionate about creating memorable, handcrafted games. Founded in Montevideo, we believe that small teams can build experiences that rival those of much larger studios — as long as every pixel, line of code, and sound effect is made with intention.</p>
+              <p data-i18n="about.p2">We draw inspiration from retro aesthetics, sci-fi narratives, and the richness of Latin American culture. Our games are designed to challenge, surprise, and above all, stay with you long after you put the controller down.</p>
             </div>
-          </div><!-- /.about__left -->
-
-          <ul class="team reveal reveal--right" role="list" aria-label="Team members">
-
-            <li class="team__member" data-delay="1">
-              <div class="team__avatar">
-                <img src="assets/img/team/joaquin-medina.jpg" alt="Joaquín Medina" />
-                <span aria-hidden="true">JM</span>
-              </div>
+          </div>
+          <div class="team reveal reveal--right">
+            <div class="team__member">
+              <div class="team__avatar"><span>JM</span><img src="assets/img/team/joaquin-medina.jpg" alt=""></div>
               <div>
-                <strong class="team__name">Joaquín Medina</strong>
-                <span class="team__role">Co-founder &amp; Producer</span>
+                <span class="team__name">Joaquín Medina</span>
+                <span class="team__role" data-i18n="team.role.producer">Co-founder & Producer</span>
                 <span class="team__school">Lic. Animación y Videojuegos — ORT Uruguay</span>
               </div>
-            </li>
-
-            <li class="team__member" data-delay="2">
-              <div class="team__avatar">
-                <img src="assets/img/team/franco-martony.jpg" alt="Franco Martony" />
-                <span aria-hidden="true">FM</span>
-              </div>
+            </div>
+            <div class="team__member">
+              <div class="team__avatar"><span>FM</span><img src="assets/img/team/franco-martony.jpg" alt=""></div>
               <div>
-                <strong class="team__name">Franco Martony</strong>
-                <span class="team__role">Co-founder &amp; Artist</span>
+                <span class="team__name">Franco Martony</span>
+                <span class="team__role" data-i18n="team.role.artist">Co-founder & Artist</span>
                 <span class="team__school">Lic. Animación y Videojuegos — ORT Uruguay</span>
               </div>
-            </li>
-
-            <li class="team__member" data-delay="3">
-              <div class="team__avatar">
-                <img src="assets/img/team/joaquin-struyas.jpg" alt="Joaquín Struyas" />
-                <span aria-hidden="true">JS</span>
-              </div>
+            </div>
+            <div class="team__member">
+              <div class="team__avatar"><span>JS</span><img src="assets/img/team/joaquin-struyas.jpg" alt=""></div>
               <div>
-                <strong class="team__name">Joaquín Struyas</strong>
-                <span class="team__role">Co-founder &amp; Developer</span>
+                <span class="team__name">Joaquín Struyas</span>
+                <span class="team__role" data-i18n="team.role.developer">Co-founder & Developer</span>
                 <span class="team__school">Ingeniería en Sistemas — ORT Uruguay</span>
               </div>
-            </li>
-
-            <li class="team__member" data-delay="4">
-              <div class="team__avatar">
-                <img src="assets/img/team/gaspar-guerra.jpg" alt="Gaspar Guerra" />
-                <span aria-hidden="true">GG</span>
-              </div>
+            </div>
+            <div class="team__member">
+              <div class="team__avatar"><span>GG</span><img src="assets/img/team/gaspar-guerra.jpg" alt=""></div>
               <div>
-                <strong class="team__name">Gaspar Guerra</strong>
-                <span class="team__role">Co-founder &amp; Writer</span>
+                <span class="team__name">Gaspar Guerra</span>
+                <span class="team__role" data-i18n="team.role.writer">Co-founder & Writer</span>
                 <span class="team__school">Lic. en Artes — Universidad de la República</span>
               </div>
-            </li>
-
-            <li class="team__member" data-delay="5">
-              <div class="team__avatar">
-                <img src="assets/img/team/santiago-mulattieri.jpg" alt="Santiago Mulattieri" />
-                <span aria-hidden="true">SM</span>
-              </div>
+            </div>
+            <div class="team__member">
+              <div class="team__avatar"><span>SM</span><img src="assets/img/team/santiago-mulattieri.jpg" alt=""></div>
               <div>
-                <strong class="team__name">Santiago Mulattieri</strong>
-                <span class="team__role">Co-founder &amp; Artist</span>
+                <span class="team__name">Santiago Mulattieri</span>
+                <span class="team__role" data-i18n="team.role.artist">Co-founder & Artist</span>
                 <span class="team__school">Lic. Lenguajes y Medios Audiovisuales — UdelaR</span>
               </div>
-            </li>
-
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════════════ GAMES ═══════════════════════════ -->
-    <section id="games" class="games section" aria-labelledby="games-heading">
+    <section id="games" class="section games">
       <div class="container">
-
         <header class="section__header reveal">
-          <span class="section__label">What we make</span>
-          <h2 id="games-heading" class="section__title">Our Games</h2>
-          <p class="section__subtitle">Worlds built with passion.</p>
+          <span class="section__label" data-i18n="games.label">What we make</span>
+          <h2 class="section__title" data-i18n="games.title">Our Games</h2>
+          <p class="section__subtitle" data-i18n="games.subtitle">Worlds built with passion.</p>
         </header>
-
-        <ul class="games__grid" role="list">
-
-          <li class="game-card reveal reveal--scale" data-delay="1">
-            <div class="game-card__thumbnail" aria-hidden="true">
-              <!-- Drop a screenshot at assets/img/games/shutdown3d.jpg and it auto-appears -->
-              <img
-                src="assets/img/games/shutdown3d.jpg"
-                alt="SHUTDOWN-3D screenshot"
-                onerror="this.style.display='none'"
-              />
-              <span class="game-card__placeholder-text">SHUTDOWN-3D</span>
+        <div class="game-card reveal">
+          <div class="game-card__thumbnail">
+            <span class="game-card__placeholder-text">SHUTDOWN-3D</span>
+          </div>
+          <div class="game-card__body">
+            <div class="game-card__meta">
+              <span class="tag" data-i18n="game.tag.action">Action</span>
+              <span class="tag" data-i18n="game.tag.scifi">Sci-Fi</span>
+              <span class="tag tag--status" data-i18n="game.tag.dev">In Development</span>
             </div>
-            <div class="game-card__body">
-              <div class="game-card__meta">
-                <span class="tag">Action</span>
-                <span class="tag">Sci-Fi</span>
-                <span class="tag tag--status">In Development</span>
-              </div>
-              <h3 class="game-card__title">SHUTDOWN-3D</h3>
-              <p class="game-card__desc">
-                A third-person action game set inside a collapsing AI megastructure.
-                Fight rogue systems, hack terminals, and race the clock before the
-                entire network wipes itself clean.
-              </p>
-              <a href="#contact" class="btn btn--primary btn--sm">Follow Updates</a>
-            </div>
-          </li>
-
-          <!-- Future game cards go here -->
-
-        </ul>
+            <h3 class="game-card__title">SHUTDOWN-3D</h3>
+            <p class="game-card__desc" data-i18n="game.desc">A third-person action game set inside a collapsing AI megastructure. Fight rogue systems, hack terminals, and race the clock before the entire network wipes itself clean.</p>
+            <a href="#contact" class="btn btn--primary btn--sm" data-i18n="game.cta">Follow Updates</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ═══════════════════════ CONTACT ═════════════════════════ -->
-    <section id="contact" class="contact section" aria-labelledby="contact-heading">
-      <div class="container contact__inner">
-
-        <header class="section__header reveal">
-          <span class="section__label">Reach out</span>
-          <h2 id="contact-heading" class="section__title">Get in Touch</h2>
-          <p class="section__subtitle">
-            Press, collaborations, or just saying hi — we'd love to hear from you.
-          </p>
+    <section id="contact" class="section contact">
+      <div class="container contact__inner reveal">
+        <header class="section__header">
+          <span class="section__label" data-i18n="contact.label">Reach out</span>
+          <h2 class="section__title" data-i18n="contact.title">Get in Touch</h2>
+          <p class="section__subtitle" data-i18n="contact.subtitle">Press, collaborations, or just saying hi — we'd love to hear from you.</p>
         </header>
-
-        <a
-          href="mailto:agregar mail"
-          class="btn btn--primary contact__email reveal"
-          data-delay="1"
-        >
-          agregar mail
-        </a>
-
-        <nav aria-label="Social links">
-          <ul class="social reveal" data-delay="2" role="list">
-
-            <li>
-              <a href="https://twitter.com/"
-                 class="social__link"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="Twitter / X">
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.26 5.632L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
-                </svg>
-                <span>Twitter / X</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="https://instagram.com/"
-                 class="social__link"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="Instagram">
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/>
-                </svg>
-                <span>Instagram</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="https://discord.gg/"
-                 class="social__link"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="Discord">
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/>
-                </svg>
-                <span>Discord</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="https://www.linkedin.com/company/"
-                 class="social__link"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="LinkedIn">
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.026-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.939v5.667H9.351V9h3.414v1.561h.049c.476-.9 1.637-1.848 3.368-1.848 3.601 0 4.266 2.369 4.266 5.455v6.284ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.114 20.452H3.558V9h3.556v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z"/>
-                </svg>
-                <span>LinkedIn</span>
-              </a>
-            </li>
-
-          </ul>
-        </nav>
-
+        <a href="mailto:agregar mail" class="btn btn--primary" style="margin-bottom: var(--sp-12);" data-i18n="contact.email">agregar mail</a>
+        <div class="social">
+          <a href="https://twitter.com/" class="social__link" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>Twitter / X</span>
+          </a>
+          <a href="https://instagram.com/" class="social__link" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://discord.gg/" class="social__link" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            <span>Discord</span>
+          </a>
+          <a href="https://www.linkedin.com/company/" class="social__link" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="footer-year"></span> Ciudadela Digital. All rights reserved.</p>
+      <p><span data-i18n="footer.rights">© Ciudadela Digital. All rights reserved.</span> <span id="footer-year"></span></p>
     </div>
   </footer>
 
