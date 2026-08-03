@@ -536,19 +536,16 @@ body {
   background: transparent;
 }
 
-.games::before {
+.games::before,
+.about::before,
+.contact::before {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
-  top: -120px;
-  height: 200px;
+  top: 0;
+  height: clamp(60px, 10vh, 120px);
   pointer-events: none;
-  background:
-    linear-gradient(to bottom, rgba(12, 15, 24, 0.98) 0%, rgba(12, 15, 24, 0.88) 36%, rgba(12, 15, 24, 0.58) 66%, rgba(12, 15, 24, 0) 100%),
-    radial-gradient(ellipse 70% 100% at 50% 0%, rgba(92, 184, 255, 0.14) 0%, rgba(42, 82, 163, 0.1) 48%, transparent 78%);
-  filter: blur(16px);
-  opacity: 0.88;
   z-index: 0;
 }
 
