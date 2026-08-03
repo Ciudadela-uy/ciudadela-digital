@@ -174,6 +174,7 @@
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.getElementById('nav-menu');
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (toggle && menu) {
     toggle.addEventListener('click', function () {
       const isOpen = menu.classList.toggle('is-open');
@@ -206,7 +207,6 @@
       }
     });
   }
-
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = anchor.getAttribute('href');
@@ -252,56 +252,43 @@
   const parallaxEl = document.querySelector('.hero__parallax');
   const revealEls = Array.from(document.querySelectorAll('.reveal'));
   if (revealEls.length) {
-    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let ticking = false;
-
-    function updateScrollMotion() {
-      const scrollY = window.scrollY;
-
-      if (parallaxEl && !prefersReducedMotion.matches) {
-        parallaxEl.style.setProperty('--hero-parallax-offset', `${scrollY * 0.22}px`);
-      }
-
-      revealEls.forEach(el => {
-        if (prefersReducedMotion.matches) {
-          el.style.setProperty('--reveal-progress', '1');
-          el.classList.add('is-visible');
-          return;
-        }
-
-        const rect = el.getBoundingClientRect();
-        const start = window.innerHeight * 0.76;
-        const end = window.innerHeight * 0.38;
-        const rawProgress = clamp((start - rect.top) / (start - end), 0, 1);
-        const progress = 1 - Math.pow(1 - rawProgress, 2.1);
-
-        el.style.setProperty('--reveal-progress', progress.toFixed(3));
-        el.classList.toggle('is-visible', progress >= 0.995);
+    if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.12
       });
 
-      ticking = false;
+      revealEls.forEach(el => revealObserver.observe(el));
     }
+  }
 
-    function requestScrollMotionUpdate() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(updateScrollMotion);
-    }
-
-    window.addEventListener('scroll', requestScrollMotionUpdate, { passive: true });
-    window.addEventListener('resize', requestScrollMotionUpdate, { passive: true });
-    if (typeof prefersReducedMotion.addEventListener === 'function') {
-      prefersReducedMotion.addEventListener('change', requestScrollMotionUpdate);
-    }
-    requestScrollMotionUpdate();
-  } else if (parallaxEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (parallaxEl && !prefersReducedMotion.matches) {
+    let ticking = false;
     const updateParallax = () => {
-      parallaxEl.style.setProperty('--hero-parallax-offset', `${window.scrollY * 0.22}px`);
+      parallaxEl.style.setProperty('--hero-parallax-offset', `${window.scrollY * 0.35}px`);
+      ticking = false;
     };
 
-    window.addEventListener('scroll', updateParallax, { passive: true });
-    window.addEventListener('resize', updateParallax, { passive: true });
-    updateParallax();
+    const requestParallaxUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateParallax);
+    };
+
+    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    window.addEventListener('resize', requestParallaxUpdate, { passive: true });
+    if (typeof prefersReducedMotion.addEventListener === 'function') {
+      prefersReducedMotion.addEventListener('change', requestParallaxUpdate);
+    }
+    requestParallaxUpdate();
   }
 })();

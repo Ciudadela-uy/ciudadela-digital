@@ -17,8 +17,8 @@
         <span class="nav__logo-text">Ciudadela<em>Digital</em></span>
       </a>
       <div class="nav__menu" id="nav-menu">
-        <a href="#about" class="nav__link" data-i18n="nav.about">About</a>
         <a href="#games" class="nav__link" data-i18n="nav.games">Games</a>
+        <a href="#about" class="nav__link" data-i18n="nav.about">About</a>
         <a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a>
         <button id="lang-toggle" class="nav__link nav__lang-btn">ES</button>
       </div>
@@ -33,25 +33,11 @@
   <main>
     <section id="hero" class="hero">
       <div class="hero__parallax" style="background-image: url('assets/img/banners/banner-1.png'); background-size: contain; background-position: center top; background-repeat: no-repeat;"></div>
-      <div class="container hero__content">
-        <p class="hero__eyebrow">
-          <span class="hero__eyebrow-dot" aria-hidden="true"></span>
-          Game Studio - Montevideo, Uruguay
-        </p>
-
-        <h1 id="hero-heading" class="hero__title">
-          Ciudadela
-          <span class="gradient-text">Digital</span>
-        </h1>
-        <p class="hero__tagline" data-i18n="hero.tagline">We build worlds worth getting lost in.</p>
+      <div class="container hero__content hero__content--game">
+        <h1 id="hero-heading" class="hero__title hero__title--game">SHUTDOWN</h1>
         <div class="hero__cta">
           <a href="#games" class="btn btn--primary" data-i18n="hero.cta.games">See Our Games</a>
-          <a href="#about" class="btn btn--ghost" data-i18n="hero.cta.team">Meet the Team</a>
         </div>
-      </div>
-      <div class="hero__scroll">
-        <div class="hero__scroll-line"></div>
-        <span class="hero__scroll-label" data-i18n="hero.scroll">scroll</span>
       </div>
     </section>
 
@@ -64,7 +50,8 @@
         </header>
         <div class="game-card reveal">
           <div class="game-card__thumbnail">
-            <span class="game-card__placeholder-text">SHUTDOWN-3D</span>
+            <img src="assets/img/banners/banner-1.png" alt="SHUTDOWN artwork">
+            <span class="game-card__placeholder-text">SHUTDOWN</span>
           </div>
           <div class="game-card__body">
             <div class="game-card__meta">
@@ -72,7 +59,7 @@
               <span class="tag" data-i18n="game.tag.scifi">Sci-Fi</span>
               <span class="tag tag--status" data-i18n="game.tag.dev">In Development</span>
             </div>
-            <h3 class="game-card__title">SHUTDOWN-3D</h3>
+            <h3 class="game-card__title">SHUTDOWN</h3>
             <p class="game-card__desc" data-i18n="game.desc">A third-person action game set inside a collapsing AI megastructure. Fight rogue systems, hack terminals, and race the clock before the entire network wipes itself clean.</p>
             <a href="#contact" class="btn btn--primary btn--sm" data-i18n="game.cta">Follow Updates</a>
           </div>
