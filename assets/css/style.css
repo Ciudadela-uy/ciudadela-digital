@@ -1,11 +1,3 @@
-/* @font-face {
-  font-family: 'Boombox2';
-  src: url('../fonts/boombox2.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-} */
-
 :root {
   --blue-deep: #2a52a3;
   --blue-light: #5cb8ff;
@@ -27,9 +19,12 @@
   --nav-height: 72px;
   --footer-height: 0px;
 
-  --font-display: 'Boombox2', sans-serif;
+  --font-display: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
+  /* --font-display: 'Boombox2', sans-serif;
   --font-body: 'Boombox2', sans-serif;
-  --font-mono: 'Boombox2', sans-serif;
+  --font-mono: 'Boombox2', sans-serif; */
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -242,12 +237,10 @@ body {
 
 .hero__parallax {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: -18%;
-  background-size: 100% auto !important;
-  background-position: center top !important;
+  inset: -18% 0;
+  height: 136%;
+  background-size: cover !important;
+  background-position: center center !important;
   background-repeat: no-repeat;
   pointer-events: none;
   transform: translateY(var(--hero-parallax-offset, 0px));
