@@ -19,8 +19,8 @@
   --nav-height: 72px;
   --footer-height: 0px;
 
-  --font-display: 'DM Sans', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
