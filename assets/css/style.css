@@ -228,7 +228,6 @@ body {
   position: relative;
   min-height: 0;
   height: calc(100vw / (var(--hero-image-ratio)));
-  max-height: 100dvh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -255,14 +254,14 @@ body {
 
 .hero__parallax {
   position: absolute;
-  inset: -12% 0;
-  height: 124%;
-  background-size: cover !important;
+  inset: 0;
+  height: 100%;
+  background-size: 100% auto !important;
   background-position: center top !important;
   background-repeat: no-repeat;
   pointer-events: none;
-  transform: translateY(var(--hero-parallax-offset, 0px));
-  will-change: transform;
+  transform: none;
+  will-change: auto;
 }
 
 .hero {
