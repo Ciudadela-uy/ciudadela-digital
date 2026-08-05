@@ -76,7 +76,7 @@
       "contact.label": "Contáctanos",
       "contact.title": "Ponte en Contacto",
       "contact.subtitle": "Prensa, colaboraciones o simplemente para saludar, nos encantaría saber de ti.",
-      "contact.email": "agregar mail",
+      "contact.email": "hello@ciudadeladigital.com",
       "footer.rights": "© Ciudadela Digital. Todos los derechos reservados.",
       "404.title": "404 - Página No Encontrada | Ciudadela Digital",
       "404.code": "404",
