@@ -210,22 +210,6 @@ body {
   z-index: 0;
 }
 
-.hero::before {
-  width: min(72vw, 860px);
-  height: min(72vw, 860px);
-  left: 50%;
-  top: 8%;
-  transform: translateX(-50%);
-  background: radial-gradient(
-    circle,
-    rgba(64, 130, 225, 0.22) 0%,
-    rgba(64, 130, 225, 0.14) 36%,
-    rgba(64, 130, 225, 0.05) 58%,
-    transparent 78%
-  );
-  filter: blur(18px);
-}
-
 .hero::after {
   left: 0;
   right: 0;
@@ -239,7 +223,7 @@ body {
   position: absolute;
   inset: -18% 0;
   height: 136%;
-  background-size: cover !important;
+  background-size: 100% auto !important;
   background-position: center center !important;
   background-repeat: no-repeat;
   pointer-events: none;
@@ -247,21 +231,8 @@ body {
   will-change: transform;
 }
 
-.hero__parallax::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 64% 58% at 50% 42%,
-    rgba(64, 130, 225, 0.24) 0%,
-    rgba(64, 130, 225, 0.11) 42%,
-    transparent 82%
-  );
-  transform: translate3d(0, 0, 0) scale(1.02);
-  transform-origin: center;
-  backface-visibility: hidden;
-  contain: paint;
-  opacity: 0.88;
+.hero {
+  background-color: black;
 }
 
 .hero__content {
@@ -275,8 +246,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-block: var(--sp-10) var(--sp-6);
   text-align: center;
+}
+
+.hero__content--game .hero__cta {
+  margin-top: auto;
 }
 
 .hero__content::after {
@@ -341,26 +317,6 @@ body {
   max-width: 9ch;
   text-wrap: balance;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.38);
-}
-
-.hero__title .gradient-text {
-  background: linear-gradient(125deg, var(--blue-light) 0%, #a8d8ff 40%, var(--blue-deep) 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: block;
-  padding-bottom: 0.22em;
-  margin-bottom: -0.22em;
-}
-
-.hero__tagline {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--text-muted);
-  max-width: 500px;
-  margin-bottom: var(--sp-10);
-  line-height: 1.6;
-  opacity: 0;
-  animation: fadeInUp 0.8s 0.65s var(--ease-out-expo) forwards;
 }
 
 .hero__cta {
@@ -970,7 +926,10 @@ body {
   .hero { min-height: 100dvh; }
 
   .hero__content { padding-block: var(--sp-16) var(--sp-20); }
-  .hero__content--game { min-height: calc(100dvh - var(--nav-height)); }
+  .hero__content--game {
+    min-height: calc(100dvh - var(--nav-height));
+    padding-block: var(--sp-8) var(--sp-5);
+  }
   .section__header {
     margin-bottom: var(--sp-10);
     text-align: center;

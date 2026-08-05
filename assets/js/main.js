@@ -89,7 +89,7 @@
   };
 
   function setLanguage(lang) {
-    const normalizedLang = (lang === 'es' || lang === 'en') ? lang : 'en';
+    const normalizedLang = (lang === 'es' || lang === 'en') ? lang : 'es';
     localStorage.setItem('lang', normalizedLang);
     document.documentElement.lang = normalizedLang;
     
@@ -118,7 +118,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('lang') || 'en';
+    const savedLang = localStorage.getItem('lang') || 'es';
     setLanguage(savedLang);
 
     document.querySelectorAll('img').forEach(img => {
@@ -140,7 +140,7 @@
     const toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
-        const currentLang = document.documentElement.lang || 'en';
+        const currentLang = document.documentElement.lang || 'es';
         const newLang = currentLang === 'en' ? 'es' : 'en';
         setLanguage(newLang);
       });
