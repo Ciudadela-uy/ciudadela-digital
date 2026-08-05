@@ -354,17 +354,6 @@ body {
   z-index: 1;
 }
 
-.section::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--blue-deep) 30%, var(--blue-light) 50%, var(--blue-deep) 70%, transparent 100%);
-  opacity: 0.22;
-}
-
 .section__header {
   margin-bottom: var(--sp-16);
 }
@@ -509,13 +498,8 @@ body {
 /* ══════════════════════════════════════════════════════════════
    GAMES
 ═══════════════════════════════════════════════════════════════ */
-.games {
-  position: relative;
-  background: transparent;
-}
 
 .games::before,
-.about::before,
 .contact::before {
   content: '';
   position: absolute;
@@ -992,23 +976,23 @@ body {
 
 .about {
   background:
-    linear-gradient(180deg, rgba(7, 8, 13, 0) 0%, rgba(12, 15, 24, 0.52) 14%, rgba(12, 15, 24, 0.8) 56%, rgba(7, 8, 13, 0.96) 100%);
+    linear-gradient(180deg, rgba(11, 14, 23, 0.24) 0%, rgba(11, 14, 23, 0.52) 44%, rgba(9, 11, 18, 1) 100%);
 }
 
 .games {
   background:
-    linear-gradient(180deg, rgba(12, 15, 24, 0.96) 0%, rgba(15, 19, 32, 0.9) 48%, rgba(7, 8, 13, 0.98) 100%);
+    linear-gradient(180deg, rgba(12, 15, 24, 0.98) 0%, rgba(13, 17, 28, 0.96) 42%, rgba(10, 13, 21, 0.98) 100%);
 }
 
 .contact {
   background:
-    linear-gradient(180deg, rgba(15, 19, 32, 0.92) 0%, rgba(12, 15, 24, 0.88) 52%, rgba(7, 8, 13, 0.98) 100%);
+    linear-gradient(180deg, rgba(15, 19, 32, 0.98) 0%, rgba(12, 16, 26, 0.96) 40%, rgba(8, 10, 16, 0.98) 100%);
 }
 
-.about::before,
 .games::before,
 .contact::before,
 .about::after,
+.about::before,
 .games::after,
 .contact::after {
   content: '';
@@ -1023,20 +1007,20 @@ body {
 .games::before,
 .contact::before {
   top: 0;
-  height: clamp(120px, 18vw, 220px);
+  height: clamp(120px, 15vw, 210px);
 }
 
 .about::after,
 .games::after,
 .contact::after {
   bottom: 0;
-  height: clamp(120px, 18vw, 200px);
+  height: clamp(90px, 12vw, 170px);
 }
 
 .about::before {
   background:
-    linear-gradient(180deg, rgba(7, 8, 13, 0.98) 0%, rgba(9, 11, 18, 0.66) 24%, rgba(12, 15, 24, 0.12) 68%, rgba(12, 15, 24, 0) 100%),
-    linear-gradient(90deg, transparent 0%, rgba(42, 82, 163, 0.22) 32%, rgba(92, 184, 255, 0.28) 50%, rgba(42, 82, 163, 0.22) 68%, transparent 100%);
+    linear-gradient(180deg, rgba(11, 14, 23, 0.95) 0%, rgba(11, 14, 23, 0.6) 42%, rgba(11, 14, 23, 0.18) 78%, rgba(11, 14, 23, 0) 100%),
+    linear-gradient(90deg, transparent 0%, rgba(42, 82, 163, 0.14) 32%, rgba(92, 184, 255, 0.18) 50%, rgba(42, 82, 163, 0.14) 68%, transparent 100%);
   background-size: 100% 100%, 100% 1px;
   background-repeat: no-repeat;
   background-position: center top, center top;
@@ -1044,32 +1028,40 @@ body {
 
 .games::before {
   background:
-    linear-gradient(180deg, rgba(12, 15, 24, 0.98) 0%, rgba(13, 17, 28, 0.72) 24%, rgba(15, 19, 32, 0.14) 70%, rgba(15, 19, 32, 0) 100%),
-    linear-gradient(90deg, transparent 0%, rgba(42, 82, 163, 0.22) 32%, rgba(92, 184, 255, 0.28) 50%, rgba(42, 82, 163, 0.22) 68%, transparent 100%);
-  background-size: 100% 100%, 100% 1px;
-  background-repeat: no-repeat;
-  background-position: center top, center top;
-}
-
-.contact::before {
-  background:
-    linear-gradient(180deg, rgba(15, 19, 32, 0.98) 0%, rgba(13, 17, 28, 0.7) 24%, rgba(12, 15, 24, 0.12) 70%, rgba(12, 15, 24, 0) 100%),
-    linear-gradient(90deg, transparent 0%, rgba(42, 82, 163, 0.22) 32%, rgba(92, 184, 255, 0.28) 50%, rgba(42, 82, 163, 0.22) 68%, transparent 100%);
+    linear-gradient(180deg, rgba(12, 15, 24, 0.9) 0%, rgba(12, 15, 24, 0.62) 42%, rgba(12, 15, 24, 0.2) 80%, rgba(12, 15, 24, 0) 100%),
+    linear-gradient(90deg, transparent 0%, rgba(42, 82, 163, 0.14) 32%, rgba(92, 184, 255, 0.18) 50%, rgba(42, 82, 163, 0.14) 68%, transparent 100%);
   background-size: 100% 100%, 100% 1px;
   background-repeat: no-repeat;
   background-position: center top, center top;
 }
 
 .about::after {
-  background: linear-gradient(180deg, rgba(12, 15, 24, 0) 0%, rgba(10, 12, 20, 0.28) 32%, rgba(9, 11, 18, 0.7) 72%, rgba(7, 8, 13, 0.98) 100%);
+  background:
+    linear-gradient(180deg, rgba(9, 11, 18, 1) 0%, rgba(12, 15, 24, 0.96) 40%, rgba(15, 19, 32, 0.98) 75%, rgba(15, 19, 32, 1) 100%),
+    linear-gradient(90deg, transparent 0%, transparent 15%, rgba(42, 82, 163, 0.07) 35%, rgba(92, 184, 255, 0.1) 50%, rgba(42, 82, 163, 0.07) 65%, transparent 85%, transparent 100%);
+  background-size: 100% 100%, 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center bottom, center bottom;
 }
 
 .games::after {
-  background: linear-gradient(180deg, rgba(15, 19, 32, 0) 0%, rgba(12, 14, 22, 0.28) 32%, rgba(10, 12, 20, 0.74) 74%, rgba(7, 8, 13, 0.98) 100%);
+  background:
+    linear-gradient(180deg, rgba(13, 17, 28, 0) 0%, rgba(13, 17, 28, 0.35) 40%, rgba(11, 14, 23, 0.7) 75%, rgba(11, 14, 23, 0.95) 100%),
+    linear-gradient(90deg, transparent 0%, rgba(42, 82, 163, 0.14) 32%, rgba(92, 184, 255, 0.18) 50%, rgba(42, 82, 163, 0.14) 68%, transparent 100%);
+  background-size: 100% 100%, 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center bottom, center bottom;
 }
 
 .contact::after {
-  background: linear-gradient(180deg, rgba(12, 15, 24, 0) 0%, rgba(10, 12, 20, 0.24) 30%, rgba(8, 10, 16, 0.62) 72%, rgba(7, 8, 13, 0.98) 100%);
+  background: linear-gradient(180deg, rgba(12, 16, 26, 0) 0%, rgba(10, 12, 20, 0.2) 34%, rgba(8, 10, 16, 0.48) 72%, rgba(7, 8, 13, 0.84) 100%);
+}
+
+@media (min-width: 901px) {
+  .games.section,
+  .about.section {
+    min-height: min(96dvh, 980px);
+  }
 }
 
 .nav__lang-btn {

@@ -88,8 +88,16 @@
     }
   };
 
+  function getBrowserLanguage() {
+    const preferred = Array.isArray(navigator.languages) && navigator.languages.length
+      ? navigator.languages[0]
+      : navigator.language;
+
+    return String(preferred || '').toLowerCase().startsWith('es') ? 'es' : 'en';
+  }
+
   function setLanguage(lang) {
-    const normalizedLang = (lang === 'es' || lang === 'en') ? lang : 'es';
+    const normalizedLang = (lang === 'es' || lang === 'en') ? lang : getBrowserLanguage();
     localStorage.setItem('lang', normalizedLang);
     document.documentElement.lang = normalizedLang;
     
@@ -118,8 +126,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('lang') || 'es';
-    setLanguage(savedLang);
+    const savedLang = localStorage.getItem('lang');
+    const initialLang = (savedLang === 'es' || savedLang === 'en') ? savedLang : getBrowserLanguage();
+    setLanguage(initialLang);
 
     document.querySelectorAll('img').forEach(img => {
       img.setAttribute('draggable', 'false');
@@ -140,7 +149,7 @@
     const toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
-        const currentLang = document.documentElement.lang || 'es';
+        const currentLang = document.documentElement.lang || getBrowserLanguage();
         const newLang = currentLang === 'en' ? 'es' : 'en';
         setLanguage(newLang);
       });
