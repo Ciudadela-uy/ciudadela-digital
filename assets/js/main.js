@@ -259,6 +259,7 @@
   }
 
   const parallaxEl = document.querySelector('.hero__parallax');
+  const heroEl = document.querySelector('.hero');
   const revealEls = Array.from(document.querySelectorAll('.reveal'));
   if (revealEls.length) {
     if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) {
@@ -280,10 +281,12 @@
     }
   }
 
-  if (parallaxEl && !prefersReducedMotion.matches) {
+  if (parallaxEl && heroEl && !prefersReducedMotion.matches) {
     let ticking = false;
     const updateParallax = () => {
-      parallaxEl.style.setProperty('--hero-parallax-offset', `${window.scrollY * 0.35}px`);
+      const heroRect = heroEl.getBoundingClientRect();
+      const heroProgress = Math.min(Math.max(-heroRect.top, 0), heroRect.height);
+      parallaxEl.style.setProperty('--hero-parallax-offset', `${heroProgress * 0.22}px`);
       ticking = false;
     };
 
