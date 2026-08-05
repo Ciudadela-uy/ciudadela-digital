@@ -22,9 +22,6 @@
   --font-display: 'Inter', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
-  /* --font-display: 'Boombox2', sans-serif;
-  --font-body: 'Boombox2', sans-serif;
-  --font-mono: 'Boombox2', sans-serif; */
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
