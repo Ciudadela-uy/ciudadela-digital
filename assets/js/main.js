@@ -95,7 +95,7 @@
     const normalizedLang = (lang === 'es' || lang === 'en') ? lang : getBrowserLanguage();
     localStorage.setItem('lang', normalizedLang);
     document.documentElement.lang = normalizedLang;
-    
+
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
